@@ -7,4 +7,4 @@ if __name__ == "__main__":
     elif len(argv) > 1:
         for i in range(1, len(argv)):
             total += int(argv[i])
-    print(total)
+        print(total)
