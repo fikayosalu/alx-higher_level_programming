@@ -1,7 +1,7 @@
 #!/bin/usr/python3
 """
 1.square module
-OOP Programming style 
+OOP Programming style
 Contains a class Square
 """
 
