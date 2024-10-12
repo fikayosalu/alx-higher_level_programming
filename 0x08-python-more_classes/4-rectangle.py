@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/pytho
 """
 4-rectangle module
 Contains a class Rectangle
@@ -17,7 +17,6 @@ class Rectangle:
     Perimeter method to calculate the perimeter of the rectangle
     setter and getter methods
     """
-
     def __init__(self, width=0, height=0):
         """
         Initialize objects of the Rectangle class with
