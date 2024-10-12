@@ -1,6 +1,30 @@
 #!/usr/bin/python3
+"""
+4-rectangle module
+Contains a class Rectangle
+class Rectangle defines a rectangle
+"""
+
+
 class Rectangle:
+    """
+    Defines a rectangle
+    Contains multiple methods:
+    __init__ method
+    __str__ method
+    __repr__ method
+    Area method to calculate the area of the rectangle
+    Perimeter method to calculate the perimeter of the rectangle
+    setter and getter methods
+    """
+
     def __init__(self, width=0, height=0):
+        """
+        Initialize objects of the Rectangle class with
+        private attributes width and height
+        width and height must be integers
+        width and height must be >= 0
+        """
         if type(width) is int and width >= 0:
             self.__width = width
         elif type(width) is not int:
@@ -16,9 +40,11 @@ class Rectangle:
 
     @property
     def width(self):
+        """Return the width of the rectangle"""
         return self.__width
-   
+
     @width.setter
+    """Set the width of the rectangle"""
     def width(self, value):
         if type(value) is int and value >= 0:
             self.__width = value
@@ -29,10 +55,12 @@ class Rectangle:
 
     @property
     def height(self):
+        """Return the height of the rectangle"""
         return self.__height
 
     @height.setter
     def heigth(self, value):
+        """Set the height of the rectangle"""
         if type(value) is int and value >= 0:
             self.__height = value
         elif type(value) is not int:
@@ -41,15 +69,18 @@ class Rectangle:
             raise ValueError("height must be >= 0")
 
     def area(self):
+        """Return the area of the rectangle"""
         return self.__width * self.__height
 
     def perimeter(self):
+        """Return the perimeter of the rectangle"""
         if self.__width == 0 or self.__height == 0:
             return 0
         else:
             return 2 * (self.__width + self__height)
 
     def __str__(self):
+        """Return message to end users about the rectangle class"""
         display = ""
         if self.__width == 0 or self.__height == 0:
             return 0
@@ -64,4 +95,6 @@ class Rectangle:
             return display
 
     def __repr__(self):
+        """Return a string representation to the rectangle class
+        to be able to recreate a new instance"""
         return f"Rectangle({self.__width}, {self.__height})"
