@@ -90,5 +90,6 @@ class Rectangle:
                 while j < self.__width:
                     display += '#'
                     j += 1
-                display += '\n'
+                if i < self.__height - 1:
+                    display += '\n'
             return display
