@@ -1,8 +1,10 @@
-#!/usr/bin/pytho
+#!/usr/bin/python3
 """
 4-rectangle module
 Contains a class Rectangle
 class Rectangle defines a rectangle
+It has two attributes: width and height
+It calculates the arae and perimeter of the rectangle
 """
 
 
