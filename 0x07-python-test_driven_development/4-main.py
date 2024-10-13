@@ -10,7 +10,7 @@ print("")
 print_square(1)
 print("")
 try:
-    print_square(-33.9)
+    print_square()
 except Exception as e:
     print(e)
     print("")

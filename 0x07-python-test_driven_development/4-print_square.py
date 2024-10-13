@@ -31,7 +31,7 @@ def print_square(size):
                 j += 1
             print()
             i += 1
-    if not isinstance(size, int):
+    else:
         raise TypeError("size must be an integer")
     if size < 0:
         raise ValueError("size must be >= 0")
