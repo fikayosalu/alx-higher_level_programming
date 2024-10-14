@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-10-square module
+11-square module
 contains 3 classes BaseGeometry,Rectangle, square
 """
 
@@ -48,4 +48,4 @@ class Square(Rectangle):
 
     def __str__(self):
         """Return description of the class square"""
-        return f"[Rectangle] {self.__size}/{self.__size}"
+        return f"[Square] {self.__size}/{self.__size}"
