@@ -39,13 +39,8 @@ class Rectangle(BaseGeometry):
 
 
 class Square(Rectangle):
-    def __init__(self, size, width=0, height=0):
+    def __init__(self, size):
         """Initialize instance of the class with size"""
         self.__size = super().integer_validator("size", size)
+        super().__init__(self.__size, self.__size)
 
-    def area(self):
-        return self.__size ** 2
-
-    def __str__(self):
-        """Return description of the class square"""
-        return f"[Rectangle] {self.__size}/{self.__size}"

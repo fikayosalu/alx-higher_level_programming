@@ -39,7 +39,7 @@ class Rectangle(BaseGeometry):
 
 
 class Square(Rectangle):
-    def __init__(self, size, width=0, height=0):
+    def __init__(self, size):
         """Initialize instance of the class with size"""
         self.__size = super().integer_validator("size", size)
 
