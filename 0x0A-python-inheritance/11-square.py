@@ -1,51 +1,26 @@
 #!/usr/bin/python3
 """
-11-square module
-contains 3 classes BaseGeometry,Rectangle, square
+10-square module
+Contains a class Square
 """
 
 
-class BaseGeometry:
-    """Contains a multiple methods"""
-    def __init__(self):
-        pass
-
-    def area(self):
-        """Prints an Exception message"""
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        if type(value) is not int:
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
-
-        return value
-
-
-class Rectangle(BaseGeometry):
-    """Initializes the instance of Rectangle with width and height"""
-    def __init__(self, width, height):
-        self.__width = super().integer_validator("width", width)
-        self.__height = super().integer_validator("height", height)
-
-    def area(self):
-        """Returns the area of a rectangle"""
-        return self.__width * self.__height
-
-    def __str__(self):
-        """Returns a description of the Rectangle class"""
-        return f"[Rectangle] {self.__width}/{self.__height}"
+Rectangle = __import__('9-rectangle').Rectangle
 
 
 class Square(Rectangle):
+    """
+    Defines a square
+    Inherits from the class Rectangle
+    """
     def __init__(self, size):
-        """Initialize instance of the class with size"""
-        self.__size = super().integer_validator("size", size)
-
-    def area(self):
-        return self.__size ** 2
+        """
+        Initializes instance of Square with attributes
+        """
+        self.integer_validator("size", size)
+        self.__size = size
+        super().__init__(size, size)
 
     def __str__(self):
-        """Return description of the class square"""
+        """Returns the description of the Square class"""
         return f"[Square] {self.__size}/{self.__size}"
