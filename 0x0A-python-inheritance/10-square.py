@@ -38,7 +38,7 @@ class Rectangle(BaseGeometry):
         return f"[Rectangle] {self.__width}/{self.__height}"
 
 
-class Square(Rectangle):
+class Square(BaseGeometry, Rectangle):
     def __init__(self, size):
         """Initialize instance of the class with size"""
         self.__size = super().integer_validator("size", size)
