@@ -74,15 +74,44 @@ class Rectangle(Base):
         return value
 
     def area(self):
+        """Return the area of the rectangle"""
         return self.__width * self.__height
 
+    def update(self, *args, **kwargs):
+        """Update the values of attributes"""
+        self.id = kwargs.get('id') if 'id' in kwargs else self.id
+        self.__width = kwargs.get('width') if 'width'\
+            in kwargs else self.width
+        self.__height = kwargs.get('height') if 'height'\
+            in kwargs else self.height
+        self.__x = kwargs.get('x') if 'x' in kwargs else self.__x
+        self.__y = kwargs.get('y') if 'y' in kwargs else self.__y
+
+        self.id = args[0] if len(args) > 0 else self.id
+        self.__width = args[1] if len(args) > 1 else self.__width
+        self.__height = args[2] if len(args) > 2 else self.__height
+        self.__x = args[3] if len(args) > 3 else self.__x
+        self.__y = args[4] if len(args) > 4 else self.__y
+
+    def to_dictionary(self):
+        dict_attr = {
+                'x': self.__x, 'y': self.__y, 'id': self.id,
+                'width': self.__width, 'height': self.__height
+        }
+        return dict_attr
+
     def display(self):
+        for i in range(self.__y):
+            print()
         for i in range(self.__height):
             j = 0
+            for i in range(self.__x):
+                print(" ", end="")
             while j < self.__width:
                 print("#", end="")
                 j += 1
             print()
 
     def __str__(self):
-        return f"[Rectangle] ({self.id}) - {self.__width}/{self.__height}"
+        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} \
+- {self.__width}/{self.__height}"
