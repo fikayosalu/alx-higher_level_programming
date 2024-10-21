@@ -16,6 +16,7 @@ class TestRectangle(unittest.TestCase):
     """
 
     def setUp(self):
+        """Set at thye beginning of every test"""
         Base._Base__nb_objects = 0
 
     def test_id(self):
@@ -64,11 +65,8 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             Rectangle(10, [], 2, 3)
 
-
     def test_area(self):
-
         """ Test the area method of the Rectangle"""
-
         r1 = Rectangle(2, 3, 4, 5)
         self.assertEqual(r1.area(), 6)
 

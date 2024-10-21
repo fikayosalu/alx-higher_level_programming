@@ -94,6 +94,7 @@ class Rectangle(Base):
         self.__y = args[4] if len(args) > 4 else self.__y
 
     def to_dictionary(self):
+        """Return a dictionary of class Rectangle attributes"""
         dict_attr = {
                 'x': self.__x, 'y': self.__y, 'id': self.id,
                 'width': self.__width, 'height': self.__height
@@ -101,6 +102,7 @@ class Rectangle(Base):
         return dict_attr
 
     def display(self):
+        """Display the rectangle using '#'"""
         for i in range(self.__y):
             print()
         for i in range(self.__height):
@@ -113,5 +115,6 @@ class Rectangle(Base):
             print()
 
     def __str__(self):
+        """Return the representation of the rectangle class"""
         return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} \
 - {self.__width}/{self.__height}"
