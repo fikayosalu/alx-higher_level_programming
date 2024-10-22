@@ -7,7 +7,9 @@ from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
+    """Defines a square and inherits from the Rectangle class"""
     def __init__(self, size, x=0, y=0, id=None):
+        """Initializes the Rectangle class with attributes"""
         super().__init__(size, size, x, y, id)
 
     @property
@@ -17,8 +19,9 @@ class Square(Rectangle):
 
     @size.setter
     def size(self, value):
+        """Set the value of Square width and height"""
         self._Rectangle__width = \
-                super()._Rectangle__validate_w_h("width", value)
+            super()._Rectangle__validate_w_h("width", value)
         self._Rectangle__height = \
             super()._Rectangle__validate_w_h("width", value)
 
@@ -43,6 +46,7 @@ class Square(Rectangle):
         self._Rectangle__y = args[3] if len(args) > 3 else self._Rectangle__y
 
     def to_dictionary(self):
+        """Return a dictionary of the attributes and its values"""
         dict_attr = {
                 'x': self._Rectangle__x, 'y': self._Rectangle__y,
                 'id': self.id, 'size': self._Rectangle__width
