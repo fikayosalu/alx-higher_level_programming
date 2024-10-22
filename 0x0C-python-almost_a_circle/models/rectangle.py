@@ -60,7 +60,7 @@ class Rectangle(Base):
     def __validate_w_h(self, name, value):
         """Validate all setter methods and instantiation of width and height"""
         if type(value) is not int or type(value) is bool:
-            raise TypeError(f"{name} must be integer")
+            raise TypeError(f"{name} must be an integer")
         if value <= 0:
             raise ValueError(f"{name} must be > 0")
         return value
