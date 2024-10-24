@@ -89,7 +89,7 @@ class Base:
     def load_from_file_csv(cls):
         """
         Deserialize the contents of a file written in csv format
-        Return the an instance of the class using the 
+        Return the an instance of the class using the
         deserialized dictionary
         """
         filename = f"{cls.__name__}.csv"
