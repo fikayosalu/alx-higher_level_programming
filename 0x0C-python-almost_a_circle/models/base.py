@@ -32,9 +32,35 @@ class Base:
         return json.loads(json_string)
 
     @classmethod
+    def create(cls, **dictionary):
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 3)
+        if cls.__name__ == "Square":
+            dummy = cls(1)
+        dummy.update(**dictionary)
+        return dummy
+
+    def update(self, *args, **kwargs):
+        pass
+
+    @classmethod
     def save_to_file(cls, list_objs):
-        with open(f"{cls.__name__}.json", "w", encoding="utf-8") as file:
+        filename = f"{cls.__name__}.json"
+        obj_attr = [cls.to_dictionary(x) for x in list_objs]
+        with open(filename, "w", encoding="utf-8") as file:
             if list_objs is None:
-                file.write([])
-            list_dict = [r.__dict__ for r in list_objs]
-            file.write(Base.to_json_string(list_dict))
+                file.write(cls.to_json_string([]))
+            else:
+                file.write(cls.to_json_string(obj_attr))
+
+    @classmethod
+    def load_from_file(cls):
+        filename = f"{cls.__name__}.json"
+        try:
+            with open(filename, "r", encoding="utf-8") as file:
+                content = file.read()
+                attr_list = cls.from_json_string(content)
+                instances = [cls.create(**x) for x in attr_list]
+                return instances
+        except FileNotFoundError:
+            return []

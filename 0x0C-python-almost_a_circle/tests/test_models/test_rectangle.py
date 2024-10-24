@@ -65,6 +65,12 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError):
             Rectangle(10, [], 2, 3)
 
+        r3 = Rectangle(10, 5, 3, 1)
+        self.assertEqual(r3.x, 10)
+
+        with assertRaise(ValueError):
+            r3.y = -4
+
     def test_area(self):
         """ Test the area method of the Rectangle"""
         r1 = Rectangle(2, 3, 4, 5)
@@ -81,6 +87,14 @@ class TestRectangle(unittest.TestCase):
 
         r5 = Rectangle(4, 6, 4, 5, 8)
         self.assertEqual(r5.area(), 24)
+
+    def test_str(self):
+        """Test the __str__ method of Rectangle"""
+        r1 = Rectangle(1, 2, 5, 7)
+        self.assertEqual(r1, [Rectangle] (1) 5/7 - 1/2)
+
+        r2 = Rectangle(3, 4, 8, 9, 5)
+        self.assertEqual(r2, [Rectangle] (5) 8/9 - 3/4)
 
 
 if __name__ == "__main__":
