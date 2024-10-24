@@ -49,9 +49,9 @@ class Base:
         obj_attr = [cls.to_dictionary(x) for x in list_objs]
         with open(filename, "w", encoding="utf-8") as file:
             if list_objs is None:
-                file.write(cls.to_json_string([]))
+                file.write(Base.to_json_string([]))
             else:
-                file.write(cls.to_json_string(obj_attr))
+                file.write(Base.to_json_string(obj_attr))
 
     @classmethod
     def load_from_file(cls):
