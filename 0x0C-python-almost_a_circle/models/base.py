@@ -4,6 +4,7 @@ base module
 Contains a class Base
 """
 import json
+import csv
 
 
 class Base:
@@ -62,5 +63,43 @@ class Base:
                 attr_list = cls.from_json_string(content)
                 instances = [cls.create(**x) for x in attr_list]
                 return instances
+        except FileNotFoundError:
+            return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Serialize a list of dictionaries of instances in csv
+        format and save them in a csv file
+        """
+        filename = f"{cls.__name__}.csv"
+        if cls.__name__ == "Rectangle":
+            fieldnames = ["id", "width", "height", "x", "y"]
+        if cls.__name__ == "Square":
+            fieldnames = ["id", "size", "x", "y"]
+        obj_dict = [cls.to_dictionary(x) for x in list_objs]
+
+        with open(filename, "w", newline="", encoding="utf-8") as file:
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+            writer.writeheader()
+            writer.writerows(obj_dict)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Deserialize the contents of a file written in csv format
+        Return the an instance of the class using the 
+        deserialized dictionary
+        """
+        filename = f"{cls.__name__}.csv"
+        try:
+            with open(filename, "r", newline='', encoding="utf-8") as file:
+                content = csv.DictReader(file)
+                data = list(content)
+                instances = [cls.create(**x) for x in data]
+
+                return instances
+
         except FileNotFoundError:
             return []
