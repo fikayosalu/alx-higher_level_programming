@@ -205,7 +205,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.height, 23)
         self.assertEqual(r1.x, 12)
 
-        r1.update(3, 7, 8, 9 ,2)
+        r1.update(3, 7, 8, 9, 2)
         self.assertEqual(r1.id, 3)
         self.assertEqual(r1.width, 7)
         self.assertEqual(r1.height, 8)
@@ -218,6 +218,30 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.id, 89)
         self.assertEqual(r1.width, 7)
         self.assertEqual(r1.height, 8)
+
+    def test_to_dictionary(self):
+        r1 = Rectangle(10, 2, 1, 9)
+        r1_dict = r1.to_dictionary()
+        self.assertEqual(type(r1_dict), dict)
+        self.assertEqual(r1_dict, {'x': 1, 'y': 9, 'id': 1, 
+                'height': 2, 'width': 10})
+        r2 = Rectangle(12, 3, 7, 8, 2)
+        r2_dict = r2.to_dictionary()
+        self.assertEqual(type(r2_dict), dict)
+        self.assertEqual(r2_dict, {
+            'x': 7, 'y': 8, 'id': 2, 
+            'height': 3, 'width': 12
+})
+        r3 = Rectangle(2, 3)
+        r3.update(**r2_dict)
+        self.assertEqual(str(r3), "[Rectangle] (2) 7/8 - 12/3")
+
+        r4 = Rectangle(2, 3)
+        r4_dict = r4.to_dictionary()
+        self.assertEqual(r4_dict, {
+            'x': 0, 'y': 0, 'id': 3,
+            'height': 3, 'width': 2
+})
 
 
 if __name__ == "__main__":

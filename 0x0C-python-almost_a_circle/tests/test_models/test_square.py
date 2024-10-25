@@ -221,6 +221,30 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.id, 89)
         self.assertEqual(r1.size, 7)
 
+    def test_to_dictionary(self):
+        r1 = Square(10, 1, 9)
+        r1_dict = r1.to_dictionary()
+        self.assertEqual(type(r1_dict), dict)
+        self.assertEqual(r1_dict, {'x': 1, 'y': 9, 'id': 1,
+                 'size': 10})
+        r2 = Square(12, 7, 8, 2)
+        r2_dict = r2.to_dictionary()
+        self.assertEqual(type(r2_dict), dict)
+        self.assertEqual(r2_dict, {
+            'x': 7, 'y': 8, 'id': 2,
+            'size': 12
+})
+        r3 = Square(2)
+        r3.update(**r2_dict)
+        self.assertEqual(str(r3), "[Square] (2) 7/8 - 12")
+
+        r4 = Square(2)
+        r4_dict = r4.to_dictionary()
+        self.assertEqual(r4_dict, {
+            'x': 0, 'y': 0, 'id': 3,
+            'size': 2
+})
+
 
 if __name__ == "__main__":
     unittest.main()
