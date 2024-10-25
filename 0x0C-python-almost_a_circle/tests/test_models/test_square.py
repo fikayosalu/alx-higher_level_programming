@@ -274,6 +274,24 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(Base.to_json_string({'id': 12}),
                         json.dumps({'id': 12}))
 
+    def test_save_to_file(self):
+        r1 = Square(1, 2, 3, 5)
+        r2 = Square(3, 5, 2, 7)
+        Square.save_to_file([r1, r2])
+
+        with open("Square.json", "r") as file:
+            content = file.read()
+            self.assertEqual(content, json.dumps([
+                {'x': 2, 'y': 3, 'id': 5, 'size': 1},
+                {'x': 5, 'y': 2, 'id': 7, 'size': 3}
+            ]))
+
+        Square.save_to_file(None)
+
+        with open("Square.json", "r") as file:
+            content = file.read()
+            self.assertEqual(content, "[]")
+
 
 
 if __name__ == "__main__":

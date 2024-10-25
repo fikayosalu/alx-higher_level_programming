@@ -273,6 +273,24 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(Base.to_json_string({'id': 12}),
                         json.dumps({'id': 12}))
 
+    def test_save_to_file(self):
+        r1 = Rectangle(1, 2, 3, 5)
+        r2 = Rectangle(3, 5, 2, 7, 1)
+        Rectangle.save_to_file([r1, r2])
+
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+            self.assertEqual(content, json.dumps([
+                {'x': 3, 'y': 5, 'id': 1, 'width': 1, 'height': 2},
+                {'x': 2, 'y': 7, 'id': 1, 'width': 3, 'height': 5}
+            ]))
+
+        Rectangle.save_to_file(None)
+
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+            self.assertEqual(content, "[]")
+
 
 if __name__ == "__main__":
     unittest.main()
