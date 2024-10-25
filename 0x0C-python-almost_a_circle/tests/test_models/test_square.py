@@ -9,6 +9,7 @@ import unittest
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
+import json
 
 
 class TestRectangle(unittest.TestCase):
@@ -244,6 +245,28 @@ class TestRectangle(unittest.TestCase):
             'x': 0, 'y': 0, 'id': 3,
             'size': 2
 })
+
+    def test_tojson_string(self):
+        r2 = Square(12, 7, 8, 2)
+        r2_dict = r2.to_dictionary()
+        json_string = Base.to_json_string([r2_dict])
+        self.assertEqual(json_string, json.dumps([{
+            'x': 7, 'y': 8, 'id': 2,
+            'size': 12,
+}]))
+        self.assertEqual(type(json_string), str)
+
+        list_dict = [
+        {'y': 8, 'x': 2, 'id': 1, 'size': 10},
+        {'y': 0, 'x': 0, 'id': 2, 'size': 2}
+]
+        list_json = Base.to_json_string(list_dict)
+        self.assertEqual(list_json, json.dumps([
+            {'y': 8, 'x': 2, 'id': 1, 'size': 10},
+            {'y': 0, 'x': 0, 'id': 2, 'size': 2}
+]))
+        self.assertEqual(type(list_json), str)
+
 
 
 if __name__ == "__main__":
