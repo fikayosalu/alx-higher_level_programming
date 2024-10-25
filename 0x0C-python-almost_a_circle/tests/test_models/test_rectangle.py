@@ -186,6 +186,39 @@ class TestRectangle(unittest.TestCase):
         r5 = Rectangle(4, 7, 8, 8, 0)
         self.assertEqual(str(r5), "[Rectangle] (0) 8/8 - 4/7")
 
+    def test_update(self):
+        """Test the update method used to assign values to attributes
+        of the class
+        """
+        r1 = Rectangle(10, 10, 10, 10)
+        self.assertEqual(r1.id, 1)
+
+        r1.update(12)
+        self.assertEqual(r1.id, 12)
+
+        r1.update(width=12, height=16)
+        self.assertEqual(r1.width, 12)
+        self.assertEqual(r1.height, 16)
+
+        r1.update(12, 34, 23, width=28, height=19, x=12)
+        self.assertEqual(r1.width, 34)
+        self.assertEqual(r1.height, 23)
+        self.assertEqual(r1.x, 12)
+
+        r1.update(3, 7, 8, 9 ,2)
+        self.assertEqual(r1.id, 3)
+        self.assertEqual(r1.width, 7)
+        self.assertEqual(r1.height, 8)
+        self.assertEqual(r1.x, 9)
+        self.assertEqual(r1.y, 2)
+
+        r1.update(x=12, y=24, id=89)
+        self.assertEqual(r1.x, 12)
+        self.assertEqual(r1.y, 24)
+        self.assertEqual(r1.id, 89)
+        self.assertEqual(r1.width, 7)
+        self.assertEqual(r1.height, 8)
+
 
 if __name__ == "__main__":
     unittest.main()
