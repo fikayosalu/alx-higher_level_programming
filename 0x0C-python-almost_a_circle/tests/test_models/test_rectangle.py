@@ -60,15 +60,96 @@ class TestRectangle(unittest.TestCase):
             r2.x = "7"
 
         with self.assertRaises(TypeError):
+            r2.x = 5.6
+
+        with self.assertRaises(TypeError):
+            r2.x = True
+
+        with self.assertRaises(TypeError):
+            r2.x = False
+
+        with self.assertRaises(TypeError):
+            r2.y = 5.6
+
+        with self.assertRaises(TypeError):
+            r2.y = False
+
+        with self.assertRaises(TypeError):
+            r2.y = True
+
+        with self.assertRaises(TypeError):
+            r2.x = {}
+
+        with self.assertRaises(TypeError):
+            r2.x = []
+
+        with self.assertRaises(TypeError):
+            r2.y = {}
+
+        with self.assertRaises(TypeError):
+            r2.y = []
+
+        with self.assertRaises(TypeError):
+            r2.width = 5.6
+
+        with self.assertRaises(TypeError):
+            r2.width = True
+
+        with self.assertRaises(TypeError):
+            r2.width = False
+
+        with self.assertRaises(TypeError):
+            r2.width = []
+
+        with self.assertRaises(TypeError):
+            r2.width = {}
+
+        with self.assertRaises(TypeError):
+            r2.height = 5.6
+
+        with self.assertRaises(TypeError):
+            r2.height = True
+
+        with self.assertRaises(TypeError):
+            r2.height = False
+
+        with self.assertRaises(TypeError):
+            r2.height = {}
+
+        with self.assertRaises(TypeError):
+            r2.height = []
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 3.7)
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 37, 9.7)
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 3, 7, 4.5)
+
+        with self.assertRaises(TypeError):
+            Rectangle(True, 3)
+
+        with self.assertRaises(TypeError):
+            Rectangle(3, False)
+
+        with self.assertRaises(TypeError):
+            Rectangle(5, 3, True, 8)
+
+        with self.assertRaises(TypeError):
+            Rectangle(4, 7, 3, True)
+
+        with self.assertRaises(TypeError):
             Rectangle({}, {}, {}, {})
 
         with self.assertRaises(TypeError):
             Rectangle(10, [], 2, 3)
 
         r3 = Rectangle(10, 5, 3, 1)
-        self.assertEqual(r3.x, 10)
+        self.assertEqual(r3.x, 3)
 
-        with assertRaise(ValueError):
+        with self.assertRaises(ValueError):
             r3.y = -4
 
     def test_area(self):
@@ -91,10 +172,19 @@ class TestRectangle(unittest.TestCase):
     def test_str(self):
         """Test the __str__ method of Rectangle"""
         r1 = Rectangle(1, 2, 5, 7)
-        self.assertEqual(r1, [Rectangle] (1) 5/7 - 1/2)
+        self.assertEqual(str(r1), "[Rectangle] (1) 5/7 - 1/2")
 
         r2 = Rectangle(3, 4, 8, 9, 5)
-        self.assertEqual(r2, [Rectangle] (5) 8/9 - 3/4)
+        self.assertEqual(str(r2), "[Rectangle] (5) 8/9 - 3/4")
+
+        r3 = Rectangle(3, 4)
+        self.assertEqual(str(r3), "[Rectangle] (2) 0/0 - 3/4")
+
+        r4 = Rectangle(1, 3, 1)
+        self.assertEqual(str(r4), "[Rectangle] (3) 1/0 - 1/3")
+
+        r5 = Rectangle(4, 7, 8, 8, 0)
+        self.assertEqual(str(r5), "[Rectangle] (0) 8/8 - 4/7")
 
 
 if __name__ == "__main__":
