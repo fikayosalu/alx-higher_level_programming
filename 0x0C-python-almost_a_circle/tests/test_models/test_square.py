@@ -266,6 +266,13 @@ class TestRectangle(unittest.TestCase):
             {'y': 0, 'x': 0, 'id': 2, 'size': 2}
 ]))
         self.assertEqual(type(list_json), str)
+        dict_list = Base.to_json_string(None)
+        self.assertEqual(dict_list, "[]")
+
+        empty_list = Base.to_json_string([])
+        self.assertEqual(empty_list, "[]")
+        self.assertEqual(Base.to_json_string({'id': 12}),
+                        json.dumps({'id': 12}))
 
 
 

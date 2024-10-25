@@ -224,13 +224,13 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(10, 2, 1, 9)
         r1_dict = r1.to_dictionary()
         self.assertEqual(type(r1_dict), dict)
-        self.assertEqual(r1_dict, {'x': 1, 'y': 9, 'id': 1, 
-                'height': 2, 'width': 10})
+        self.assertEqual(r1_dict, {'x': 1, 'y': 9, 'id': 1,
+                                    'height': 2, 'width': 10})
         r2 = Rectangle(12, 3, 7, 8, 2)
         r2_dict = r2.to_dictionary()
         self.assertEqual(type(r2_dict), dict)
         self.assertEqual(r2_dict, {
-            'x': 7, 'y': 8, 'id': 2, 
+            'x': 7, 'y': 8, 'id': 2,
             'height': 3, 'width': 12
 })
         r3 = Rectangle(2, 3)
@@ -255,15 +255,23 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(type(json_string), str)
 
         list_dict = [
-        {'y': 8, 'x': 2, 'id': 1, 'width': 10, 'height': 7}, 
+        {'y': 8, 'x': 2, 'id': 1, 'width': 10, 'height': 7},
         {'y': 0, 'x': 0, 'id': 2, 'width': 2, 'height': 4}
 ]
         list_json = Base.to_json_string(list_dict)
         self.assertEqual(list_json, json.dumps([
-            {'y': 8, 'x': 2, 'id': 1, 'width': 10, 'height': 7}, 
+            {'y': 8, 'x': 2, 'id': 1, 'width': 10, 'height': 7},
             {'y': 0, 'x': 0, 'id': 2, 'width': 2, 'height': 4}
 ]))
         self.assertEqual(type(list_json), str)
+
+        dict_list = Base.to_json_string(None)
+        self.assertEqual(dict_list, "[]")
+
+        empty_list = Base.to_json_string([])
+        self.assertEqual(empty_list, "[]")
+        self.assertEqual(Base.to_json_string({'id': 12}),
+                        json.dumps({'id': 12}))
 
 
 if __name__ == "__main__":
