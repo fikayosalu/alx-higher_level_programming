@@ -19,7 +19,7 @@ class Rectangle {
       row = '';
       while (j < this.width) {
         row += 'X';
-	j++;
+        j++;
       }
       console.log(row);
       i++;
