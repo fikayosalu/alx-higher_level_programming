@@ -17,9 +17,8 @@ if __name__ == "__main__":
         db=sys.argv[3]
     )
     state_name = sys.argv[4]
-    query = "SELECT * FROM states WHERE name = %s"
     cursor = connect.cursor()
-    cursor.execute(query, (state_name,))
+    cursor.execute("SELECT * FROM states WHERE name = '{}'".format(state_name))
     rows = cursor.fetchall()
     for item in rows:
         print(item)
