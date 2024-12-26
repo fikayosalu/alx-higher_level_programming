@@ -5,8 +5,6 @@ model_state module
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, create_engine
 
-engine = create_engine(
-        "mysql+mysqldb://root:mySQLp%40ssword1@localhost:3306/hbtn_0e_6_usa")
 Base = declarative_base()
 
 
@@ -19,4 +17,6 @@ class State(Base):
     name = Column(String(128), nullable=False)
 
 
+engine = create_engine(
+        "mysql+mysqldb://root:mySQLp%40ssword1@localhost:3306/hbtn_0e_6_usa")
 Base.metadata.create_all(engine)
