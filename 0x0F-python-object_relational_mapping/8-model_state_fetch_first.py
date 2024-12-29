@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """
-7-model_state_fetch_all module
-A script that lists all State objects from the database hbtn_0e_6_usa
+8-model_state_fetch_first module
+A script that prints the first State Object from the database hbtn_0e_6_usa
 """
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
-from model_state import Base, State
+
 import sys
+from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy import create_engine
+from model_state import Base, State
 
 
 if __name__ == '__main__':
@@ -16,8 +17,10 @@ if __name__ == '__main__':
             )
     Session = sessionmaker(bind=engine)
     session = Session()
-
-    row = session.query(State).order_by(State.id).all()
+    row = session.query(State).order_by(State.id).first()
     session.close()
-    for item in row:
-        print(f"{item.id}: {item.name}")
+
+    if row is None:
+        print('Nothing')
+    else:
+        print(f"{row.id}: {row.name}")

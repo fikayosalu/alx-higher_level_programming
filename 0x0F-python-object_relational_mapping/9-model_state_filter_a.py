@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """
-7-model_state_fetch_all module
-A script that lists all State objects from the database hbtn_0e_6_usa
+9-model_state_filter module
+A script that lists all State objects that contain the letter a
+from the database hbtn_0e_6_usa
 """
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
-from model_state import Base, State
+
 import sys
+from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy import create_engine
+from model_state import Base, State
 
 
 if __name__ == '__main__':
@@ -16,8 +18,9 @@ if __name__ == '__main__':
             )
     Session = sessionmaker(bind=engine)
     session = Session()
-
-    row = session.query(State).order_by(State.id).all()
+    row = session.query(State).filter(
+            State.name.like("%a%")).order_by(State.id).all()
     session.close()
-    for item in row:
-        print(f"{item.id}: {item.name}")
+
+    for items in row:
+        print(f"{items.id}: {items.name}")
