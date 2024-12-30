@@ -18,12 +18,15 @@ if __name__ == "__main__":
     )
     cursor = connect.cursor()
     cursor.execute("""
-    SELECT * FROM states
-    ORDER BY id ASC
+    SELECT cities.id, states.name, cities.name
+    FROM states
+    JOIN cities
+    WHERE state_id = states.id
+    ORDER BY cities.id ASC
     """)
     rows = cursor.fetchall()
-    for item in rows:
-        print(item)
+    for id, state, city in rows:
+        print(f"({id}, '{city}', '{state}')")
 
     cursor.close()
     connect.close()
