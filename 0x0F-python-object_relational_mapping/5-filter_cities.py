@@ -30,9 +30,12 @@ if __name__ == '__main__':
     cursor.close()
     connect.close()
     index = 0
-    for row in rows:
-        if index < len(rows) - 1:
-            print(row[0], end=', ')
-        else:
-            print(row[0])
-        index += 1
+    if len(rows) >= 1:
+        for row in rows:
+            if index < len(rows) - 1:
+                print(row[0], end=', ')
+            else:
+                print(row[0])
+            index += 1
+    else:
+        print()
