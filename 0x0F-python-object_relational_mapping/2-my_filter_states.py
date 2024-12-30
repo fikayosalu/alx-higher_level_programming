@@ -21,11 +21,8 @@ if __name__ == "__main__":
     cursor.execute("\
     SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(state_name))
     rows = cursor.fetchall()
-    if rows:
-        for item in rows:
-            print(item)
-    else:
-        print()
+    for item in rows:
+        print(item)
 
     cursor.close()
     connect.close()
