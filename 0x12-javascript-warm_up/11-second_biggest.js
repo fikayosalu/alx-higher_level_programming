@@ -2,22 +2,20 @@
 const argumentArr = process.argv;
 let max = Number.NEGATIVE_INFINITY;
 let secondMax = Number.NEGATIVE_INFINITY;
-let i = 0;
-let j = 0;
+let i = 2;
+let j = 2;
 if (argumentArr.length <= 3) {
   console.log(0);
 } else {
   while (i < argumentArr.length) {
-    if (max < argumentArr[i]) {
-      max = argumentArr[i];
+    let num = Number(argumentArr[i]);
+    if (num > max) {
+      secondMax = max;
+      max = num;
+    } else if (num > secondMax && num < max) {
+      secondMax = num;
     }
     i++;
-  }
-  while (j < argumentArr.length) {
-    if (secondMax < argumentArr[j] && argumentArr[j] < max) {
-      secondMax = argumentArr[j];
-    }
-    j++;
   }
   console.log(secondMax);
 }
